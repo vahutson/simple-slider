@@ -13,7 +13,7 @@ window.addEventListener('resize', slideAppear);
 window.onload = slideAppear();
 
 function slideAppear() {
-
+    buttonGo.disabled = false;
     container.style.transform = 'translateX(0px)';
     digit = 0;
 
