@@ -12,45 +12,41 @@ window.addEventListener('resize', slideAppear);
 
 window.onload = slideAppear();
 
-
-
 function slideAppear() {
-    container.offsetHeight = imgOne[0].height;
-    slider[0].style.height = imgOne[0].height + 'px';
+
     container.style.transform = 'translateX(0px)';
-    digit=0;
+    digit = 0;
 
     if (document.body.clientWidth >= 900) {
         imgOne.forEach(function (item) {
             item.width = slider[0].offsetWidth / 3;
+            imgHeight = item.height;
             imgWidth = item.width;
-                slider[0].offsetWidth = imgWidth * 3;
+            slider[0].offsetWidth = imgWidth * 3;
             container.offsetWidth = imgWidth * 3;
+            slider[0].style.height = imgHeight + 'px';
 
         });
     } else if (document.body.clientWidth >= 600) {
         imgOne.forEach(function (item) {
             item.width = slider[0].offsetWidth / 2;
+            imgHeight = item.height;
             imgWidth = item.width;
             slider[0].offsetWidth = imgWidth * 2;
             container.offsetWidth = imgWidth * 2;
+            slider[0].style.height = imgHeight + 'px';
         });
     } else {
         imgOne.forEach(function (item) {
-            item.width = slider[0].offsetWidth;
-            imgWidth = item.width;
-            slider[0].offsetWidth = imgWidth;
-            container.offsetWidth = imgWidth;
+                item.width = slider[0].offsetWidth;
+                imgHeight = item.height;
+                imgWidth = item.width;
+                slider[0].offsetWidth = imgWidth;
+                container.offsetWidth = imgWidth;
+                slider[0].style.height = imgHeight + 'px';
             }
         );
-    };
-
-
-
-
-    // if (digit === 0) {
-    //     buttonBack.disabled = true;
-    // }
+    }
 }
 
 function slide(event) {
@@ -58,20 +54,11 @@ function slide(event) {
         if (digit < imgOne.length * imgWidth - slider[0].offsetWidth) {
             container.style.transform = 'translateX(-' + (imgWidth + digit) + 'px)';
             digit = Number(container.style.transform.replace(/\D+/g, ""));
-        buttonBack.disabled = false;
-            console.log(digit);} else {
+            buttonBack.disabled = false;
+            console.log(digit);
+        } else {
             buttonGo.disabled = true;
         }
-
-            // if (digit >= (imgWidth * imgOne.length - imgWidth * 2)) {
-            //     buttonGo.disabled = true;
-            // } else if (-digit < -300) {
-            //     buttonBack.disabled = false;
-            // } else {
-            //     buttonGo.disabled = false;
-            //     buttonBack.disabled = true;
-            // }
-
     } else if (event.target.classList.contains('back')) {
         if (digit !== 0) {
 
@@ -79,20 +66,11 @@ function slide(event) {
                 'translateX(' + (-digit + imgWidth) + 'px)';
             digit = Number(container.style.transform.replace(/\D+/g, ""));
             buttonGo.disabled = false;
-            // if (digit === imgWidth * 2) {
-            //     buttonBack.disabled = true;
-            // } else if (digit <= (imgWidth * imgOne.length - imgWidth)) {
-            //     buttonGo.disabled = false;
-            // } else {
-            //     buttonGo.disabled = true;
-            //     buttonBack.disabled = false;
-            // }
             console.log(digit);
         } else {
             buttonBack.disabled = true;
         }
     }
-
 }
 
 
